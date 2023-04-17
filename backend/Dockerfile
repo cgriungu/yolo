@@ -4,7 +4,7 @@ RUN mkdir /app
 
 WORKDIR /app
 
-COPY package-lock /app
+COPY package-lock.json /app
 
 COPY package.json app
 
