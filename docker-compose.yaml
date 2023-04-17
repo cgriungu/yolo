@@ -1,0 +1,57 @@
+version: '3'
+
+services:
+  frontend:
+    container_name: client_container
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - 10000:10000
+    networks:
+      frontend-net:
+        ipv4_address: 172.51.0.115
+  backend:
+    container_name: backend_container
+    ports:
+      - 5000:5000
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      PORT: 5000
+      DATABASE_URL: "mongodb+srv://Gakii:Gakii1@cluster0.n1tqvez.mongodb.net/test"
+    networks:
+      backend-net:
+        ipv4_address: 172.100.0.112
+      frontend-net:
+        ipv4_address: 172.51.0.113
+    depends_on:
+      - database
+  database:
+    container_name: backend_database
+    ports:
+      - 27017:27017
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: backend
+      MONGO_INITDB_ROOT_PASSWORD: backend
+    networks:
+      backend-net:
+        ipv4_address: 172.100.0.112
+    volumes:
+        - backend_volume:/data/db
+networks:
+  backend-net:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.100.0.0/20
+  frontend-net:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.51.0.0/21
+
+volumes:
+  backend_volume:
