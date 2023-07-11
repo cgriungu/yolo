@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yolo-deployment
+  labels:
+    app: yolo
+spec:
+  selector:
+    matchLabels:
+      app: yolo
+  template:
+    metadata:
+      labels:
+        app: yolo
+    spec:
+      containers:
+        - name: yolo
+          image: gakii/yolo-backend
+          image: gakii/yolo-frontend
+          ports:
+            - containerPort: 5000
+            - containerPort: 10000
+          env:
+            - name: NODE_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: yolo-config-map
+                  key: NODE_ENV
+            
