@@ -1,23 +1,23 @@
-# Requirements
-Make sure that you have the following installed:
-- [node](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-18-04) 
-- npm 
-- [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/) and start the mongodb service with `sudo service mongod start`
+# Introduction
+Yolo is an e-commerce platform.
 
-## Navigate to the Client Folder 
- `cd client`
+This project deploys an application (e-commerce 'YOLO') using Kubernetes orchestration concepts on Google Kubernetes Engine (GKE)
 
-## Run the folllowing command to install the dependencies 
- `npm install`
+# Technologies Used
+Frontend: React.js
+Backend: Node.js, Express.js
+Object Detection: YOLO algorithm
+Containerization: Docker
+Orchestration: Kubernetes
+## Usage
+Access the web application in your browser at http://localhost:3000.
 
-## Run the folllowing to start the app
- `npm start`
+Access the database in your browser at http://localhost:5000.
 
-## Open a new terminal and run the same commands in the backend folder
- `cd ../backend`
+You can try to add an item for object detection.
 
- `npm install`
+MongoDB Atlas used as the backend database. You can use your connection string to test the same.
 
- `npm start`
+## License
+License MIT License: Copyright (c) 2023
 
- ### Go ahead a nd add a product (note that the price field only takes a numeric input)
