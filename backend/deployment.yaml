@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yolo-backend
+spec:
+  selector:
+    matchLabels:
+      app: yolo-backend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: yolo-backend
+    spec:
+      containers:
+        - name: yolo-backend
+          image: gakii/yolo-backend:1.0.0
+          ports:
+            - containerPort: 5000
+          env:
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: yolo-backend-secrets
+                  key: MONGODB_URI
